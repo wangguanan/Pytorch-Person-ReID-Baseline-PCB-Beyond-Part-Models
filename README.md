@@ -19,7 +19,7 @@ python main.py --market_path market_path --duke_path duke_path
 ### Results
 * Market-1501: Rank-1 0.928, mAP 0.797
 * DukeMTMC-reID: Rank1 0.859, mAP 0.737
-* More results and rarameters analysis are coming soon
+* More results and parameter analysis are coming soon
 
 ## Contacts
 If you have any question about the project, please feel free to contact with me.
