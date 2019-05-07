@@ -1,5 +1,5 @@
 ## Pytorch-PCB-Beyond-Part-Models
-A Strong Re-Implementation of PCB ([Beyond Part Models](https://arxiv.org/abs/1711.09349), ECCV2018) on Market-1501 and DukeMTMC-reID datasets.
+A Strong Implementation of PCB ([Beyond Part Models](https://arxiv.org/abs/1711.09349), ECCV2018) on Market-1501 and DukeMTMC-reID datasets.
 
 ## Dependencies
 * [Anaconda (Python 2.7)](https://www.anaconda.com/download/)
@@ -11,7 +11,7 @@ A Strong Re-Implementation of PCB ([Beyond Part Models](https://arxiv.org/abs/17
 * Download [DukeMTMC-reID Dataset](https://github.com/layumi/DukeMTMC-reID_evaluation)
 
 ## Experiments
-
+* Results and Parameters Analysis is coming soon
 
 ## Contacts
 If you have any question about the project, please feel free to contact with me.
