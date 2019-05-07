@@ -16,7 +16,7 @@ python main.py --market_path market_path --duke_path duke_path
 ```
 
 ## Experiments
-* Results and Parameters Analysis is coming soon
+Results and Parameters Analysis is coming soon
 
 ## Contacts
 If you have any question about the project, please feel free to contact with me.
