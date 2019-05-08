@@ -11,7 +11,7 @@ A Strong Implementation of PCB ([Beyond Part Models](https://arxiv.org/abs/1711.
 * Download [Market-1501 Dataset](http://ww7.liangzheng.org/)
 * Download [DukeMTMC-reID Dataset](https://github.com/layumi/DukeMTMC-reID_evaluation)
 
-## Train
+## Train and Test
 ```
 python main.py --market_path market_path --duke_path duke_path
 ```
