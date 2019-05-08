@@ -1,6 +1,28 @@
 import torch
 
 
+class CatMeter:
+    '''
+    Concatenate Meter for torch.Tensor
+    '''
+    def __init__(self):
+        self.reset()
+
+    def reset(self):
+        self.val = None
+
+    def update(self, val):
+        if self.val is None:
+            self.val = val
+        else:
+            self.val = torch.cat([self.val, val], dim=0)
+    def get_val(self):
+        return self.val
+
+    def get_val_numpy(self):
+        return self.val.data.cpu().numpy()
+
+
 class MultiItemAverageMeter:
 
     def __init__(self):

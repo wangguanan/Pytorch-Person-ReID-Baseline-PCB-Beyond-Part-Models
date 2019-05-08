@@ -12,7 +12,7 @@ def test(config, base, loaders, test_dataset):
 		_, features, _, _, _ = base.model(images)
 		_, features_f, _, _, _ = base.model(images_f)
 		features = (features + features_f)
-		if base.part_num_c == 1:
+		if base.part_num == 1:
 			features = torch.unsqueeze(features, -1)
 		return features
 

@@ -34,6 +34,7 @@ def main(config):
 
 	# logger
 	logger = Logger(os.path.join(os.path.join(config.output_path, 'logs/'), 'log.txt'))
+	logger('\n'*3)
 	logger(config)
 
 
