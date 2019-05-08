@@ -1,4 +1,4 @@
-## Pytorch-PCB-Beyond-Part-Models
+## Pytorch-Person-ReID-PCB-Beyond-Part-Models
 A Strong Implementation of PCB ([Beyond Part Models](https://arxiv.org/abs/1711.09349), ECCV2018) on Market-1501 and DukeMTMC-reID datasets.
 
 ## Dependencies
