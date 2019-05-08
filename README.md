@@ -5,6 +5,7 @@ A Strong Implementation of PCB ([Beyond Part Models](https://arxiv.org/abs/1711.
 * [Anaconda (Python 2.7)](https://www.anaconda.com/download/)
 * [PyTorch 0.4.0](http://pytorch.org/)
 * GPU Memory >= 12G
+* Memory >= 20G
 
 ## Dataset Preparation
 * Download [Market-1501 Dataset](http://ww7.liangzheng.org/)
