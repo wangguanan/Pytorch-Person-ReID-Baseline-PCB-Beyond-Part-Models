@@ -22,8 +22,8 @@ python main.py --market_path market_path --duke_path duke_path
 | Implementations | market2market | duke2duke | market2duke | duke2market |
 | ---                               | :---: | :---: | :---: | :---: |
 | PCB (Ours) | **0.928 (0.797)** | **0.859 (0.737)** | **0.459 (0.276)** | **0.556 (0.287)** |
-| PCB ([Zhedong Zheng](https://github.com/huanghoujing/beyond-part-models)) | 0.926 (0.774) | 0.642 (0.439) | - | - |
-| PCB ([Houjing Huang](https://github.com/huanghoujing/beyond-part-models)) | 0.928 (0.785) | 0.845 (0.700) | - | - |
+| PCB ([layumi](https://github.com/huanghoujing/beyond-part-models)) | 0.926 (0.774) | 0.642 (0.439) | - | - |
+| PCB ([huanghoujing](https://github.com/huanghoujing/beyond-part-models)) | 0.928 (0.785) | 0.845 (0.700) | - | - |
 | PCB ([Xiaoccer](https://github.com/Xiaoccer/ReID-PCB_RPP)) |	0.927 (0.786)	| - | - | - | 
 | PCB (Paper) | 0.924 (0.773) | 0.819 (0.653)	| - | - |
 
