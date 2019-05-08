@@ -8,8 +8,8 @@ A Strong Implementation of PCB ([Beyond Part Models](https://arxiv.org/abs/1711.
 * Memory >= 20G
 
 ## Dataset Preparation
-* Download [Market-1501 Dataset](http://ww7.liangzheng.org/)
-* Download [DukeMTMC-reID Dataset](https://github.com/layumi/DukeMTMC-reID_evaluation)
+* [Market-1501 Dataset](http://ww7.liangzheng.org/) and [DukeMTMC-reID Dataset](https://github.com/layumi/DukeMTMC-reID_evaluation)
+* Download and extract both anywhere
 
 ## Train and Test
 ```
