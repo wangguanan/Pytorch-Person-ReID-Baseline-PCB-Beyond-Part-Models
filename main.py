@@ -90,9 +90,9 @@ if __name__ == '__main__':
 
 	# train configuration
 	parser.add_argument('--resume_train_epoch', type=int, default=-1, help='-1 for no resuming')
-	parser.add_argument('--total_train_epochs', type=int, default=100)
+	parser.add_argument('--total_train_epochs', type=int, default=120)
 	parser.add_argument('--base_learning_rate', type=float, default=0.5)
-	parser.add_argument('--milestones', nargs='+', type=int, default=[30, 60, 85])
+	parser.add_argument('--milestones', nargs='+', type=int, default=[50, 80, 100])
 
 	# logger configuration
 	parser.add_argument('--output_path', type=str, default='out/base/')
