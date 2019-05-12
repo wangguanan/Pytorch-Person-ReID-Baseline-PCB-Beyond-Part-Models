@@ -21,7 +21,7 @@ python main.py --market_path market_path --duke_path duke_path
 
 | Implementations | market2market | duke2duke | market2duke | duke2market |
 | ---                               | :---: | :---: | :---: | :---: |
-| PCB (Ours) | **0.928 (0.797)** | **0.859 (0.737)** | **0.459 (0.276)** | **0.556 (0.287)** |
+| PCB (Ours) | **0.931 (0.803)** | **0.845 (0.733)** | **0.439 (0.261)** | **0.569 (0.289)** |
 | PCB ([layumi](https://github.com/layumi/Person_reID_baseline_pytorch)) | 0.926 (0.774) | 0.642 (0.439) | - | - |
 | PCB ([huanghoujing](https://github.com/huanghoujing/beyond-part-models)) | 0.928 (0.785) | 0.845 (0.700) | - | - |
 | PCB ([Xiaoccer](https://github.com/Xiaoccer/ReID-PCB_RPP)) |	0.927 (0.796)	| - | - | - | 
