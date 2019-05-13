@@ -75,8 +75,8 @@ if __name__ == '__main__':
 	parser.add_argument('--cuda', type=str, default='cuda')
 
 	# dataset configuration
-	parser.add_argument('--market_path', type=str, default='/home/wangguanan/datasets/PersonReID/Market/Market-1501-v15.09.15/')
-	parser.add_argument('--duke_path', type=str, default='/home/wangguanan/datasets/PersonReID/Duke/DukeMTMC-reID/')
+	parser.add_argument('--market_path', type=str, default='market_path')
+	parser.add_argument('--duke_path', type=str, default='duke_path')
 
 	parser.add_argument('--train_dataset', type=str, default='market_train', help='market_train, market2duke_train, duke_train, duke2market_train')
 
