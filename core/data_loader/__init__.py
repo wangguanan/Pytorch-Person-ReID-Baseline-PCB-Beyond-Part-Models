@@ -32,7 +32,7 @@ class Loaders:
             'market_test_query': os.path.join(self.market_path, 'query/'),
             'market_test_gallery': os.path.join(self.market_path, 'bounding_box_test/'),
             'duke_test_query': os.path.join(self.duke_path, 'query/'),
-            'duke_test_gallery': os.path.join(self.duke_path, 'bounding_box_test')}
+            'duke_test_gallery': os.path.join(self.duke_path, 'bounding_box_test/')}
 
         # load
         self._load()
