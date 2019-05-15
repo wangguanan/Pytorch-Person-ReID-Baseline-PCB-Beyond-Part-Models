@@ -8,7 +8,7 @@
 ## Dependencies
 * [Anaconda (Python 2.7)](https://www.anaconda.com/download/)
 * [PyTorch 0.4.0](http://pytorch.org/)
-* GPU Memory >= 12G
+* GPU Memory >= 16G (we use 2 GTX1080ti GPUs to conduct our experiments.)
 * Memory >= 20G
 
 ## Dataset Preparation
