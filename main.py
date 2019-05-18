@@ -17,12 +17,13 @@ def main(config):
 
 	# loaders
 	transform_train = transforms.Compose([
-		transforms.Resize([384, 192], interpolation=3),
+		MisAlgnAug(crop_prob=0.5, ratio=config.ratio),
+		transforms.Resize(config.image_size, interpolation=3),
 		transforms.RandomHorizontalFlip(),
 		transforms.ToTensor(),
 		transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
 	transform_test = transforms.Compose([
-		transforms.Resize([384, 192], interpolation=3),
+		transforms.Resize(config.image_size, interpolation=3),
 		transforms.ToTensor(),
 		transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
 	loaders = Loaders(config, transform_train, transform_test)
@@ -59,7 +60,7 @@ def main(config):
 			base.save_model(current_epoch)
 
 		# test
-		if (current_epoch+1) % 10 == 0 and current_epoch+1 >= 0:
+		if (current_epoch+1) % 10 == 0 and current_epoch+1 >= 40:
 			market_map, market_rank = test(config, base, loaders, 'market_test')
 			duke_map, duke_rank = test(config, base, loaders, 'duke_test')
 			logger('Time: {},  Dataset: Market  \nmAP: {} \nRank: {}'.format(time_now(), market_map, market_rank))
@@ -78,7 +79,8 @@ if __name__ == '__main__':
 	parser.add_argument('--market_path', type=str, default='market_path')
 	parser.add_argument('--duke_path', type=str, default='duke_path')
 	parser.add_argument('--train_dataset', type=str, default='market_train', help='market_train, market2duke_train, duke_train, duke2market_train')
-	parser.add_argument('--image_size', type=int, nargs='+', default=[384, 256])
+	parser.add_argument('--image_size', type=int, nargs='+', default=[384, 192])
+	parser.add_argument('--ratio', type=float, default=0.05)
 
 
 	# batch size configuration
@@ -97,7 +99,7 @@ if __name__ == '__main__':
 
 	# logger configuration
 	parser.add_argument('--output_path', type=str, default='out/base/')
-	parser.add_argument('--max_save_model_num', type=int, default=0, help='0 for max num is infinit')
+	parser.add_argument('--max_save_model_num', type=int, default=1, help='0 for max num is infinit')
 
 	config = parser.parse_args()
 	main(config)
