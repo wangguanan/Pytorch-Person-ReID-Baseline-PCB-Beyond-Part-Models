@@ -8,7 +8,7 @@
 ## Dependencies
 * [Anaconda (Python 2.7)](https://www.anaconda.com/download/)
 * [PyTorch 0.4.0](http://pytorch.org/)
-* GPU Memory >= 16G (we use 2 GTX1080ti GPUs to conduct our experiments.)
+* GPU Memory >= 16G
 * Memory >= 20G
 
 ## Dataset Preparation
@@ -21,6 +21,10 @@ python main.py --market_path market_path --duke_path duke_path
 ```
 
 ## Experiments
+
+### Device
+* We conduct our experiments on 2 GTX1080ti GPUs
+
 ### Results
 
 | Implementations | market2market | duke2duke | market2duke | duke2market |
