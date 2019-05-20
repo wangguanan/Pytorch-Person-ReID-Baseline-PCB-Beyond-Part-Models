@@ -2,6 +2,7 @@ import torchvision.transforms as transforms
 
 import argparse
 import os
+import ast
 
 from core import *
 from tools import *
@@ -16,12 +17,16 @@ def main(config):
 
 
 	# loaders
-	transform_train = transforms.Compose([
-		MisAlgnAug(crop_prob=0.5, ratio=config.ratio),
+	transform_train = [
+		MisAlgnAug(crop_prob=0.5, ratio=config.mis_align_ratio),
 		transforms.Resize(config.image_size, interpolation=3),
 		transforms.RandomHorizontalFlip(),
 		transforms.ToTensor(),
-		transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
+		transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])]
+	if config.use_rea:
+		transform_train.append(RandomErasing(probability=0.5, mean=[0.485, 0.456, 0.406]))
+	transform_train = transforms.Compose(transform_train)
+
 	transform_test = transforms.Compose([
 		transforms.Resize(config.image_size, interpolation=3),
 		transforms.ToTensor(),
@@ -76,12 +81,12 @@ if __name__ == '__main__':
 	parser.add_argument('--cuda', type=str, default='cuda')
 
 	# dataset configuration
-	parser.add_argument('--market_path', type=str, default='market_path')
-	parser.add_argument('--duke_path', type=str, default='duke_path')
+	parser.add_argument('--market_path', type=str, default='')
+	parser.add_argument('--duke_path', type=str, default='')
 	parser.add_argument('--train_dataset', type=str, default='market_train', help='market_train, market2duke_train, duke_train, duke2market_train')
 	parser.add_argument('--image_size', type=int, nargs='+', default=[384, 192])
-	parser.add_argument('--ratio', type=float, default=0.05)
-
+	parser.add_argument('--mis_align_ratio', type=float, default=0.05, help='crop or pad ratio of our designed augmentation')
+	parser.add_argument('--use_rea', type=ast.literal_eval, default=True, help='use random erasing augmentation')
 
 	# batch size configuration
 	parser.add_argument('--p', type=int, default=18, help='person count in a batch')
