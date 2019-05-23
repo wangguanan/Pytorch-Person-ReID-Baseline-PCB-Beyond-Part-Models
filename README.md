@@ -36,7 +36,6 @@ python main.py --market_path market_path --duke_path duke_path
 | PCB ([Xiaoccer](https://github.com/Xiaoccer/ReID-PCB_RPP)) |	0.927 (0.796)	| - | - | - | 
 | PCB (Paper) | 0.924 (0.773) | 0.819 (0.653)	| - | - |
 
-* More results and parameter analysis are coming soon
 
 ## Contacts
 If you have any question about the project, please feel free to contact with me.
