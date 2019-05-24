@@ -22,7 +22,7 @@ python main.py --market_path market_path --duke_path duke_path
 
 ## Experiments
 
-### Device
+### Settings
 * We conduct our experiments on 2 GTX1080ti GPUs
 
 ### Results
