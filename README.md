@@ -3,7 +3,7 @@
 
 * We support:
   * A strong PCB implementation which outperforms most existing implementations.
-  * End-to-end training and evaluation.
+  * A simple and clear implementation, and end-to-end training and evaluation.
 
 ## Dependencies
 * [Anaconda (Python 2.7)](https://www.anaconda.com/download/)
@@ -22,10 +22,10 @@ python main.py --market_path market_path --duke_path duke_path
 
 ## Experiments
 
-### Settings
+### 1. Settings
 * We conduct our experiments on 2 GTX1080ti GPUs
 
-### Results
+### 2. Results
 
 | Implementations | market2market | duke2duke | market2duke | duke2market |
 | ---                               | :---: |:---: | :---: | :---: |
