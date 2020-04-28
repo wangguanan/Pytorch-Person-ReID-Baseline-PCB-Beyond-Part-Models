@@ -4,7 +4,7 @@ import torch.optim as optim
 
 import os
 
-from models import Model
+from .models import Model
 
 
 def os_walk(folder_dir):
@@ -59,7 +59,7 @@ class Base:
 	def compute_ide_loss(self, logits_list, pids):
 		avg_ide_loss = 0
 		avg_logits = 0
-		for i in xrange(self.part_num):
+		for i in range(self.part_num):
 			logits_i = logits_list[i]
 			avg_logits += 1.0 / float(self.part_num) * logits_i
 			ide_loss_i = self.ide_creiteron(logits_i, pids)
@@ -70,9 +70,9 @@ class Base:
 	## init optimizer and lr_lr_scheduler
 	def _init_optimizer(self):
 		params = [{'params': self.model.module.resnet_conv.parameters(), 'lr': 0.1*self.base_learning_rate}]
-		for i in xrange(self.part_num):
+		for i in range(self.part_num):
 			params.append({'params': getattr(self.model.module, 'classifier' + str(i)).parameters(), 'lr': self.base_learning_rate})
-		for i in xrange(self.part_num):
+		for i in range(self.part_num):
 			params.append({'params': getattr(self.model.module, 'embedder' + str(i)).parameters(), 'lr': self.base_learning_rate})
 		self.optimizer = optim.SGD(params=params, weight_decay=5e-4, momentum=0.9, nesterov=True)
 		self.lr_scheduler = optim.lr_scheduler.MultiStepLR(self.optimizer, self.milestones, gamma=0.1)

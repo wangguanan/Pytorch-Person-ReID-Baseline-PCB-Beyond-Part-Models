@@ -75,12 +75,12 @@ class Model(nn.Module):
         self.pool_e = nn.Sequential(resnet.avgpool_e)
 
         # classifier
-        for i in xrange(part_num):
+        for i in range(part_num):
             name = 'classifier' + str(i)
             setattr(self, name, BottleClassifier(2048, self.class_num, relu=True, dropout=False, bottle_dim=256))
 
         # embedding
-        for i in xrange(part_num):
+        for i in range(part_num):
             name = 'embedder' + str(i)
             setattr(self, name, nn.Linear(2048, 256))
 
@@ -92,7 +92,7 @@ class Model(nn.Module):
         features_e = torch.squeeze(self.pool_e(features))
 
         logits_list = []
-        for i in xrange(self.part_num):
+        for i in range(self.part_num):
             if self.part_num == 1:
                 features_i = features_c
             else:
@@ -102,7 +102,7 @@ class Model(nn.Module):
             logits_list.append(logits_i)
 
         embeddings_list = []
-        for i in xrange(self.part_num):
+        for i in range(self.part_num):
             if self.part_num == 1:
                 features_i = features_e
             else:

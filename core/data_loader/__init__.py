@@ -1,5 +1,5 @@
-from dataset import *
-from loader import *
+from .dataset import *
+from .loader import *
 
 import torchvision.transforms as transforms
 

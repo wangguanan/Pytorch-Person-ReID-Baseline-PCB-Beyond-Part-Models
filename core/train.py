@@ -8,7 +8,7 @@ def train_an_epoch(config, base, loaders):
 	meter = MultiItemAverageMeter()
 
 	### we assume 100 iterations as an epoch
-	for _ in xrange(100):
+	for _ in range(100):
 
 		### load a batch data
 		imgs, pids, _ = loaders.train_iter.next_one()

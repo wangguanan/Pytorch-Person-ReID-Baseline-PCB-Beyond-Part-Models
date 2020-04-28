@@ -103,7 +103,7 @@ if __name__ == '__main__':
 	parser.add_argument('--milestones', nargs='+', type=int, default=[50, 80, 100])
 
 	# logger configuration
-	parser.add_argument('--output_path', type=str, default='out/base/')
+	parser.add_argument('--output_path', type=str, default='results/')
 	parser.add_argument('--max_save_model_num', type=int, default=1, help='0 for max num is infinit')
 
 	config = parser.parse_args()

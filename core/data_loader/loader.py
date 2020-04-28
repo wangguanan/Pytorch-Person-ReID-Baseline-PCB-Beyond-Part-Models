@@ -56,7 +56,7 @@ class ClassUniformlySampler(data.sampler.Sampler):
         sample_list = []
 
         dict_copy = dict.copy()
-        keys = dict_copy.keys()
+        keys = list(dict_copy.keys())
         random.shuffle(keys)
         for key in keys:
             value = dict_copy[key]
