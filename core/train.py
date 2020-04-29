@@ -1,5 +1,5 @@
 import torch
-from tools import *
+from tools import MultiItemAverageMeter, accuracy
 
 
 def train_an_epoch(config, base, loaders):
@@ -7,7 +7,7 @@ def train_an_epoch(config, base, loaders):
 	base.set_train()
 	meter = MultiItemAverageMeter()
 
-	### we assume 100 iterations as an epoch
+	### we assume 200 iterations as an epoch
 	for _ in range(100):
 
 		### load a batch data
@@ -15,7 +15,7 @@ def train_an_epoch(config, base, loaders):
 		imgs, pids = imgs.to(base.device), pids.to(base.device)
 
 		### forward
-		_, _, _, logits_list, embeddings_list = base.model(imgs)
+		logits_list, embeddings_list = base.model(imgs)
 
 		### loss
 		ide_loss, avg_logits = base.compute_ide_loss(logits_list, pids)

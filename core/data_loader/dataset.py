@@ -69,11 +69,11 @@ class PersonReIDSamples:
         return identi_id, camera_id
 
 
+
 class Samples4Market(PersonReIDSamples):
     '''
     Market Dataset
     '''
-
     pass
 
 
@@ -81,7 +81,6 @@ class Samples4Duke(PersonReIDSamples):
     '''
     Duke dataset
     '''
-
     def _analysis_file_name(self, file_name):
         '''
 
@@ -115,4 +114,3 @@ class PersonReIDDataSet:
 
     def _loader(self, img_path):
         return Image.open(img_path).convert('RGB')
-

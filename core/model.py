@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import torchvision
 
 
@@ -111,5 +112,9 @@ class Model(nn.Module):
             embedding_i = embedder_i(features_i)
             embeddings_list.append(embedding_i)
 
-        return features, features_c, features_e, logits_list, embeddings_list
+        if self.training:
+            return logits_list, embeddings_list
+        else:
+            return F.normalize(features_c, 2, dim=2).reshape([-1, 2048*6])
+
 

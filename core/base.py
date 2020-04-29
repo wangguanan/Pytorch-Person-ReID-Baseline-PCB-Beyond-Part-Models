@@ -1,35 +1,31 @@
+import sys
+sys.path.append('..')
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
-
+from bisect import bisect_right
 import os
 
-from .models import Model
-
-
-def os_walk(folder_dir):
-	for root, dirs, files in os.walk(folder_dir):
-		files = sorted(files, reverse=True)
-		dirs = sorted(dirs, reverse=True)
-		return root, dirs, files
+from .model import Model
+from tools import CrossEntropyLabelSmooth, TripletLoss, os_walk
 
 
 class Base:
+	'''
+	a base module includes model, optimizer, loss, and save/resume operations.
+	'''
 
-	def __init__(self, config, loaders):
+	def __init__(self, config):
 
 		self.config = config
-		self.loaders = loaders
-
-		# Model Configuration
 		self.part_num = config.part_num
 		self.pid_num = config.pid_num
+		self.margin = config.margin
 
 		# Logger Configuration
 		self.max_save_model_num = config.max_save_model_num
 		self.output_path = config.output_path
-		self.model_path = os.path.join(self.output_path, 'models/')
-		self.log_path = os.path.join(self.output_path, 'logs/')
 
 		# Train Configuration
 		self.base_learning_rate = config.base_learning_rate
@@ -78,33 +74,113 @@ class Base:
 		self.lr_scheduler = optim.lr_scheduler.MultiStepLR(self.optimizer, self.milestones, gamma=0.1)
 
 
-	## save model as save_epoch
 	def save_model(self, save_epoch):
-
+		'''save model as save_epoch'''
 		# save model
-		file_path = os.path.join(self.model_path, 'model_{}.pkl'.format(save_epoch))
+		file_path = os.path.join(self.output_path, 'model_{}.pkl'.format(save_epoch))
 		torch.save(self.model.state_dict(), file_path)
-
 		# if saved model is more than max num, delete the model with smallest iter
 		if self.max_save_model_num > 0:
-			root, _, files = os_walk(self.model_path)
+			# find all files in format of *.pkl
+			root, _, files = os_walk(self.output_path)
+			for file in files:
+				if '.pkl' not in file:
+					files.remove(file)
+			# remove extra model
 			if len(files) > self.max_save_model_num:
 				file_iters = sorted([int(file.replace('.pkl', '').split('_')[1]) for file in files], reverse=False)
 				file_path = os.path.join(root, 'model_{}.pkl'.format(file_iters[0]))
 				os.remove(file_path)
 
+	def resume_last_model(self):
+		'''resume model from the last one in path self.output_path'''
+		# find all files in format of *.pkl
+		root, _, files = os_walk(self.output_path)
+		for file in files:
+			if '.pkl' not in file:
+				files.remove(file)
+		# find the last one
+		if len(files) > 0:
+			# get indexes of saved models
+			indexes = []
+			for file in files:
+				indexes.append(int(file.replace('.pkl', '').split('_')[-1]))
+			indexes = sorted(list(set(indexes)), reverse=False)
+			# resume model from the latest model
+			self.resume_model(indexes[-1])
+			#
+			start_train_epoch = indexes[-1]
+			return start_train_epoch
+		else:
+			return 0
 
-	## resume model from resume_epoch
 	def resume_model(self, resume_epoch):
-		model_path = os.path.join(self.model_path, 'model_{}.pkl'.format(resume_epoch))
+		'''resume model from resume_epoch'''
+		model_path = os.path.join(self.output_path, 'model_{}.pkl'.format(resume_epoch))
 		self.model.load_state_dict(torch.load(model_path))
-		print('successfully resume model from {}'.format(model_path))
+		print(('successfully resume model from {}'.format(model_path)))
 
+	def resume_from_model(self, model_path):
+		'''resume from model. model_path shoule be like /path/to/model.pkl'''
+		self.model.load_state_dict(torch.load(model_path))
+		print(('successfully resume model from {}'.format(model_path)))
 
-	## set model as train mode
 	def set_train(self):
+		'''set model as train mode'''
 		self.model = self.model.train()
 
-	## set model as eval mode
 	def set_eval(self):
+		'''set model as eval mode'''
 		self.model = self.model.eval()
+
+
+
+class DemoBase(Base):
+	'''
+	base for demo
+	remove unnecessary operations such as init optimizer
+	'''
+
+	def __init__(self, config):
+		self.pid_num = config.pid_num
+		# init model
+		self._init_device()
+		self._init_model()
+
+
+
+class WarmupMultiStepLR(torch.optim.lr_scheduler._LRScheduler):
+
+	def __init__(self, optimizer, milestones, gamma=0.1, warmup_factor=1.0 / 3, warmup_iters=500, warmup_method="linear", last_epoch=-1):
+		if not list(milestones) == sorted(milestones):
+			raise ValueError(
+				"Milestones should be a list of" " increasing integers. Got {}",
+				milestones,
+			)
+
+		if warmup_method not in ("constant", "linear"):
+			raise ValueError(
+				"Only 'constant' or 'linear' warmup_method accepted"
+				"got {}".format(warmup_method)
+			)
+		self.milestones = milestones
+		self.gamma = gamma
+		self.warmup_factor = warmup_factor
+		self.warmup_iters = warmup_iters
+		self.warmup_method = warmup_method
+		super(WarmupMultiStepLR, self).__init__(optimizer, last_epoch)
+
+	def get_lr(self):
+		warmup_factor = 1
+		if self.last_epoch < self.warmup_iters:
+			if self.warmup_method == "constant":
+				warmup_factor = self.warmup_factor
+			elif self.warmup_method == "linear":
+				alpha = float(self.last_epoch) / float(self.warmup_iters)
+				warmup_factor = self.warmup_factor * (1 - alpha) + alpha
+		return [
+			base_lr
+			* warmup_factor
+			* self.gamma ** bisect_right(self.milestones, self.last_epoch)
+			for base_lr in self.base_lrs
+		]
