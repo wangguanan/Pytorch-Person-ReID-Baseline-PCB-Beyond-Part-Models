@@ -74,7 +74,7 @@ if __name__ == '__main__':
 	parser.add_argument('--image_size', type=int, nargs='+', default=[384, 192])
 	parser.add_argument('--mis_align_ratio', type=float, default=0.05, help='crop or pad ratio of our designed augmentation')
 	parser.add_argument('--use_rea', type=ast.literal_eval, default=True, help='use random erasing augmentation')
-	parser.add_argument('--p', type=int, default=16, help='person count in a batch')
+	parser.add_argument('--p', type=int, default=18, help='person count in a batch')
 	parser.add_argument('--k', type=int, default=4, help='images count of a person in a batch')
 
 	# model configuration
@@ -90,7 +90,7 @@ if __name__ == '__main__':
 	parser.add_argument('--max_save_model_num', type=int, default=1, help='0 for max num is infinit')
 
 	# test configuration
-	parser.add_argument('--resume_test_model', type=str, default='/path/to/pretrained/model.pkl', help='')
+	parser.add_argument('--resume_test_model', type=str, default='/path/to/pretrained/model.pth', help='')
 	parser.add_argument('--test_mode', type=str, default='inter-camera', help='inter-camera, intra-camera, all')
 
 	# visualization configuration

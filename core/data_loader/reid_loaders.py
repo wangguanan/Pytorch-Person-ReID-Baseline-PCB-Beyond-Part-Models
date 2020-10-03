@@ -22,6 +22,7 @@ class ReIDLoaders:
         if config.use_rea:
             transform_train.append(RandomErasing(probability=0.5, mean=[0.485, 0.456, 0.406]))
         self.transform_train = transforms.Compose(transform_train)
+
         self.transform_test = transforms.Compose([
             transforms.Resize(config.image_size, interpolation=3),
             transforms.ToTensor(),

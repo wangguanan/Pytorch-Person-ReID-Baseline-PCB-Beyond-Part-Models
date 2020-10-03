@@ -115,6 +115,6 @@ class Model(nn.Module):
         if self.training:
             return logits_list, embeddings_list
         else:
-            return F.normalize(features_c, 2, dim=2).reshape([-1, 2048*6])
+            return F.normalize(features_c, 2, dim=2).reshape([-1, 2048*self.part_num])
 
 
