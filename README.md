@@ -33,7 +33,7 @@ python main.py --market_path market_path --duke_path duke_path
 
 | Implementations | market2market | duke2duke | market2duke | duke2market |
 | ---                               | :---: |:---: | :---: | :---: |
-| PCB w/ REA (Ours) | **0.939 (0.832)** [<model,pth>](https://drive.google.com/file/d/1XzLE0nQZkLxzv0CJk-NMczCpHzCvegnM/view?usp=sharing) | 0.856 **(0.753)** [<model.pth>](https://drive.google.com/file/d/1AJ1n9YaO0lmHwWiV0g58f2WtPFvKFjjG/view?usp=sharing) | 0.384 (0.237) | 0.555 (0.285) | 
+| PCB w/ REA (Ours) | **0.939 (0.832)** [<model.pth>](https://drive.google.com/file/d/1XzLE0nQZkLxzv0CJk-NMczCpHzCvegnM/view?usp=sharing) | 0.856 **(0.753)** [<model.pth>](https://drive.google.com/file/d/1AJ1n9YaO0lmHwWiV0g58f2WtPFvKFjjG/view?usp=sharing) | 0.384 (0.237) | 0.555 (0.285) | 
 | PCB (Ours) | 0.934 (0.809) | **0.867** (0.746) | **0.440(0.265)** | **0.592 (0.308)** |
 | PCB ([layumi](https://github.com/layumi/Person_reID_baseline_pytorch)) | 0.926 (0.774) | 0.642 (0.439) | - | - |
 | PCB ([huanghoujing](https://github.com/huanghoujing/beyond-part-models)) | 0.928 (0.785) | 0.845 (0.700) | - | - |
