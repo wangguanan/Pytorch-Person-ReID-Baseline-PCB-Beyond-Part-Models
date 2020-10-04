@@ -10,9 +10,9 @@
 * We re-write a strong Re-ID baseline [Bag of Tricks (BoT)](https://arxiv.org/abs/1903.07071) with a more simple and clear implementation, which is more friendly with researchers and newers. Our [code](https://github.com/wangguanan/Pytorch-Person-REID-Baseline-Bag-of-Tricks) can be found here. BoT outperforms PCB by using only the global feature. Our implementation of BoT achieves the same performance with the [offical one](https://github.com/michuanhaohao/reid-strong-baseline).
 
 ## Dependencies
-* [Anaconda (Python 2.7)](https://www.anaconda.com/download/)
+* [Anaconda (Python 3.7)](https://www.anaconda.com/download/)
 * [PyTorch 0.4.0](http://pytorch.org/)
-* GPU Memory >= 20G
+* GPU Memory >= 20G (we use 2 GTX1080ti)
 * Memory >= 20G
 
 ## Dataset Preparation
